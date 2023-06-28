@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import { useSidebar } from "@/hooks"
-import Box from "./Box"
+import { useSidebar } from "@/hooks";
+import Box from "./Box";
 
 interface ISidebarProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 const Sidebar: React.FC<ISidebarProps> = ({ children }) => {
-  const { routes, pathname } = useSidebar()
+  const { routes, pathname } = useSidebar();
 
   return (
     <aside className="flex h-full">
@@ -17,7 +17,7 @@ const Sidebar: React.FC<ISidebarProps> = ({ children }) => {
         <Box className="overflow-y-auto h-full">Song Library</Box>
       </section>
     </aside>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;

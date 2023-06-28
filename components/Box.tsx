@@ -1,8 +1,8 @@
-import { twMerge } from "tailwind-merge"
+import { twMerge } from "tailwind-merge";
 
 interface IBoxProps {
-  children: React.ReactNode
-  className?: string
+  children: React.ReactNode;
+  className?: string;
 }
 
 const Box: React.FC<IBoxProps> = ({ children, className }) => {
@@ -12,7 +12,7 @@ const Box: React.FC<IBoxProps> = ({ children, className }) => {
     >
       {children}
     </aside>
-  )
-}
+  );
+};
 
-export default Box
+export default Box;
