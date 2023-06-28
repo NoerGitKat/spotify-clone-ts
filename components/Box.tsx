@@ -1,11 +1,12 @@
+import { ReactNode, FC } from "react";
 import { twMerge } from "tailwind-merge";
 
 interface IBoxProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }
 
-const Box: React.FC<IBoxProps> = ({ children, className }) => {
+const Box: FC<IBoxProps> = ({ children, className }) => {
   return (
     <aside
       className={twMerge(" bg-neutral-900 rounded-lg h-fit w-full", className)}
