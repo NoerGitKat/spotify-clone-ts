@@ -11,7 +11,7 @@ interface ISidebarProps {
 }
 
 const Sidebar: FC<ISidebarProps> = ({ children }) => {
-  const { routes, pathname } = useSidebar();
+  const { routes } = useSidebar();
 
   return (
     <section className="flex h-full">
