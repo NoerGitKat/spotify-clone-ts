@@ -11,20 +11,16 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@types/node": "20.3.2",
-    "@types/react": "18.2.14",
-    "@types/react-dom": "18.2.6",
+    "@supabase/auth-helpers-nextjs": "^0.7.2",
+    "@supabase/auth-helpers-react": "^0.4.0",
     "autoprefixer": "10.4.14",
-    "eslint": "8.43.0",
-    "eslint-config-next": "13.4.7",
     "next": "13.4.7",
     "postcss": "8.4.24",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.10.1",
     "tailwind-merge": "^1.13.2",
-    "tailwindcss": "3.3.2",
-    "typescript": "5.1.3"
+    "tailwindcss": "3.3.2"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.60.1",
@@ -32,6 +28,12 @@
     "eslint-config-prettier": "^8.8.0",
     "husky": "^8.0.3",
     "prettier": "^2.8.8",
-    "supabase": ">=1.8.1"
+    "supabase": ">=1.8.1",
+    "@types/node": "20.3.2",
+    "@types/react": "18.2.14",
+    "@types/react-dom": "18.2.6",
+    "typescript": "5.1.3",
+    "eslint": "8.43.0",
+    "eslint-config-next": "13.4.7"
   }
 }
