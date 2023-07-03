@@ -14,17 +14,17 @@ type ListItemProps = {
 const ListItem: FC<ListItemProps> = ({ image, name, href }) => {
   const { push } = useRouter();
 
-  const onClick = () => {
+  const handleClick = () => {
     push(href);
   };
   return (
-    <li c>
+    <li>
       <button
+        onClick={handleClick}
         className="
         relative 
         group 
-        flex 
-        
+        flex   
         items-center 
         rounded-md 
         overflow-hidden 
