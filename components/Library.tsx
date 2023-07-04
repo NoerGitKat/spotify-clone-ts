@@ -1,7 +1,24 @@
-import { TbPlaylist } from "react-icons/tb";
-import { AiOutlinePlus } from "react-icons/ai";
+"use client";
 
-const Library = () => {
+import { useAuthStore, useUser } from "@/hooks";
+import { FC } from "react";
+import { AiOutlinePlus } from "react-icons/ai";
+import { TbPlaylist } from "react-icons/tb";
+
+const Library: FC<Record<string, never>> = () => {
+  const { onOpen: openAuthModal } = useAuthStore();
+  const { user, subscription } = useUser();
+
+  const onClick = () => {
+    if (!user) {
+      return openAuthModal();
+    }
+
+    // TODO: Check for subscription
+
+    return;
+  };
+
   return (
     <section className="flex flex-col">
       <aside className="flex items-center justify-between px-5 pt-4">
@@ -10,6 +27,7 @@ const Library = () => {
           <p className="text-neutral-400 font-medium text-md">Your Library</p>
         </aside>
         <AiOutlinePlus
+          onClick={onClick}
           size={20}
           className="text-neutral-400 cursor-pointer hover:text-white transition"
         />

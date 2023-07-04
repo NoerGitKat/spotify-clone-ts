@@ -1,6 +1,7 @@
 "use client";
 
 import { AuthModal } from "@/components/auth";
+import { UploadModal } from "@/components/upload";
 import { useMountCheck } from "@/hooks";
 import { FC } from "react";
 
@@ -9,7 +10,12 @@ const ModalProvider: FC<Record<string, never>> = () => {
 
   if (!isMounted) return null;
 
-  return <AuthModal />;
+  return (
+    <>
+      <AuthModal />
+      <UploadModal />
+    </>
+  );
 };
 
 export default ModalProvider;
