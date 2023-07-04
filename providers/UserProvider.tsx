@@ -1,6 +1,6 @@
 "use client";
 
-import { UserContextProvider } from "@/hooks/useUser";
+import { UserContextProvider } from "@/context/UserContext";
 import { FC, ReactNode } from "react";
 
 type UserProviderProps = {
