@@ -1,12 +1,13 @@
 "use client";
 
-import React, { FC, ReactNode } from "react";
-import { twMerge } from "tailwind-merge";
-import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
+import { useAuthStore } from "@/hooks";
 import { useRouter } from "next/navigation";
+import { FC, ReactNode } from "react";
 import { BiSearch } from "react-icons/bi";
-import Button from "./Button";
 import { HiHome } from "react-icons/hi";
+import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
+import { twMerge } from "tailwind-merge";
+import Button from "./Button";
 
 type HeaderProps = {
   children: ReactNode;
@@ -15,6 +16,7 @@ type HeaderProps = {
 
 const Header: FC<HeaderProps> = ({ children, className }) => {
   const { back, forward } = useRouter();
+  const { onOpen } = useAuthStore();
   return (
     <header
       className={twMerge(
@@ -60,10 +62,15 @@ const Header: FC<HeaderProps> = ({ children, className }) => {
           </button>
         </div>
         <div className="flex justify-between items-center gap-x-4">
-          <Button className="bg-transparent text-neutral-300 font-medium">
+          <Button
+            onClick={onOpen}
+            className="bg-transparent text-neutral-300 font-medium"
+          >
             Sign Up
           </Button>
-          <Button className="bg-white px-6 py-2">Log In</Button>
+          <Button onClick={onOpen} className="bg-white px-6 py-2">
+            Log In
+          </Button>
         </div>
       </aside>
       {children}
