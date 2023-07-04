@@ -1,5 +1,10 @@
 import { Sidebar } from "@/components";
-import { ModalProvider, SupabaseProvider, UserProvider } from "@/providers";
+import {
+  ModalProvider,
+  SupabaseProvider,
+  ToasterProvider,
+  UserProvider
+} from "@/providers";
 import { Figtree } from "next/font/google";
 import { ReactNode } from "react";
 import "./globals.css";
@@ -15,6 +20,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className={font.className}>
+        <ToasterProvider />
         <SupabaseProvider>
           <UserProvider>
             <ModalProvider />

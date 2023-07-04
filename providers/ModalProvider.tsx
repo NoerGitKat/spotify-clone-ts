@@ -9,11 +9,7 @@ const ModalProvider: FC<Record<string, never>> = () => {
 
   if (!isMounted) return null;
 
-  return (
-    <>
-      <AuthModal />
-    </>
-  );
+  return <AuthModal />;
 };
 
 export default ModalProvider;

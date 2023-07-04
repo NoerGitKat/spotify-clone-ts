@@ -1,9 +1,12 @@
 "use client";
 
-import { useAuthStore } from "@/hooks";
+import { useAuthStore, useUser } from "@/hooks";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/navigation";
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useEffect } from "react";
+import { toast } from "react-hot-toast";
 import { BiSearch } from "react-icons/bi";
+import { FaUserAlt } from "react-icons/fa";
 import { HiHome } from "react-icons/hi";
 import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
 import { twMerge } from "tailwind-merge";
@@ -15,8 +18,28 @@ type HeaderProps = {
 };
 
 const Header: FC<HeaderProps> = ({ children, className }) => {
-  const { back, forward } = useRouter();
+  const { back, forward, refresh, push } = useRouter();
   const { onOpen } = useAuthStore();
+
+  const supabaseClient = useSupabaseClient();
+  const { user } = useUser();
+
+  useEffect(() => {
+    if (user) toast.success("Successfully logged in!");
+  }, [user]);
+
+  const handleLogout = async () => {
+    try {
+      const { error } = await supabaseClient.auth.signOut();
+      if (error) toast(error.message);
+
+      refresh();
+      toast.success("Logged out!");
+    } catch (err) {
+      toast(err as string);
+    }
+  };
+
   return (
     <header
       className={twMerge(
@@ -62,15 +85,28 @@ const Header: FC<HeaderProps> = ({ children, className }) => {
           </button>
         </div>
         <div className="flex justify-between items-center gap-x-4">
-          <Button
-            onClick={onOpen}
-            className="bg-transparent text-neutral-300 font-medium"
-          >
-            Sign Up
-          </Button>
-          <Button onClick={onOpen} className="bg-white px-6 py-2">
-            Log In
-          </Button>
+          {user ? (
+            <>
+              <Button onClick={handleLogout} className="bg-white px-6 py-2">
+                Log out
+              </Button>
+              <Button onClick={() => push("/account")} className="bg-white">
+                <FaUserAlt />
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button
+                onClick={onOpen}
+                className="bg-transparent text-neutral-300 font-medium"
+              >
+                Sign Up
+              </Button>
+              <Button onClick={onOpen} className="bg-white px-6 py-2">
+                Log In
+              </Button>
+            </>
+          )}
         </div>
       </aside>
       {children}
