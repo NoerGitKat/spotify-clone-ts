@@ -1,12 +1,13 @@
 "use client";
 
-import { useAuthStore, useUser } from "@/hooks";
+import { useAuthStore, useUploadStore, useUser } from "@/hooks";
 import { FC } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import { TbPlaylist } from "react-icons/tb";
 
 const Library: FC<Record<string, never>> = () => {
   const { onOpen: openAuthModal } = useAuthStore();
+  const { onOpen: openUploadModal } = useUploadStore();
   const { user, subscription } = useUser();
 
   const onClick = () => {
@@ -16,7 +17,7 @@ const Library: FC<Record<string, never>> = () => {
 
     // TODO: Check for subscription
 
-    return;
+    return openUploadModal();
   };
 
   return (
