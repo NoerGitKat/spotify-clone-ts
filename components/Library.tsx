@@ -1,11 +1,17 @@
 "use client";
 
 import { useAuthStore, useUploadStore, useUser } from "@/hooks";
+import { Song } from "@/types/global";
 import { FC } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import { TbPlaylist } from "react-icons/tb";
+import { SongList } from "./songs";
 
-const Library: FC<Record<string, never>> = () => {
+interface LibraryProps {
+  userSongs: Song[];
+}
+
+const Library: FC<LibraryProps> = ({ userSongs }) => {
   const { onOpen: openAuthModal } = useAuthStore();
   const { onOpen: openUploadModal } = useUploadStore();
   const { user, subscription } = useUser();
@@ -33,7 +39,9 @@ const Library: FC<Record<string, never>> = () => {
           className="text-neutral-400 cursor-pointer hover:text-white transition"
         />
       </aside>
-      <aside className="flex flex-col gap-y-2 mt-4 px-3">List of Songs</aside>
+      <aside className="flex flex-col gap-y-2 mt-4 px-3">
+        <SongList songs={userSongs} isLibrary />
+      </aside>
     </section>
   );
 };

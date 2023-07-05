@@ -5,12 +5,14 @@ import { useSidebar } from "@/hooks";
 import Box from "./Box";
 import SidebarItem from "./SidebarItem";
 import Library from "./Library";
+import { Song } from "@/types/global";
 
 interface ISidebarProps {
   children: ReactNode;
+  userSongs: Song[];
 }
 
-const Sidebar: FC<ISidebarProps> = ({ children }) => {
+const Sidebar: FC<ISidebarProps> = ({ userSongs, children }) => {
   const { routes } = useSidebar();
 
   return (
@@ -22,7 +24,7 @@ const Sidebar: FC<ISidebarProps> = ({ children }) => {
           ))}
         </Box>
         <Box className="overflow-y-auto h-full">
-          <Library />
+          <Library userSongs={userSongs} />
         </Box>
       </aside>
       <main className="h-full flex-1 overflow-y-auto py-2">{children}</main>
