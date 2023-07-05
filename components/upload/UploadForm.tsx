@@ -7,8 +7,6 @@ import { useUser } from "@/hooks";
 import { nanoid } from "nanoid";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/navigation";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 
 type UploadFormProps = {
   closeModal: () => void;
