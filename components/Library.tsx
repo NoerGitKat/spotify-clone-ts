@@ -40,7 +40,7 @@ const Library: FC<LibraryProps> = ({ userSongs }) => {
         />
       </aside>
       <aside className="flex flex-col gap-y-2 mt-4 px-3">
-        <SongList songs={userSongs} isLibrary />
+        <SongList songs={userSongs} isRow />
       </aside>
     </section>
   );
