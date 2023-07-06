@@ -5,3 +5,4 @@ export { default as Button } from "./Button";
 export { default as ListItem } from "./ListItem";
 export { default as Modal } from "./Modal";
 export { default as SongList } from "./songs/SongList";
+export { default as Input } from "./Input";

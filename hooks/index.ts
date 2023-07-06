@@ -5,3 +5,4 @@ export { default as useUser } from "./useUser";
 export { default as useUploadStore } from "./useUploadStore";
 export { default as useLoadImage } from "./useLoadImage";
 export { default as useDebounce } from "./useDebounce";
+export { default as useSearchInput } from "./useSearchInput";
