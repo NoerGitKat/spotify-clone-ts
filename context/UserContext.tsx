@@ -5,6 +5,7 @@ import {
 } from "@supabase/auth-helpers-react";
 import { Subscription, User } from "@supabase/supabase-js";
 import { createContext, useCallback, useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 
 type UserContextType = {
   accessToken: string | null;
@@ -59,6 +60,7 @@ export const UserContextProvider = (props: UserContextProps) => {
 
           if (userDetailsPromise.status === "fulfilled") {
             setUserDetails(userDetailsPromise.value?.data as UserDetails);
+            toast.success("Successfully logged in!");
           }
 
           if (subscriptionPromise.status === "fulfilled") {

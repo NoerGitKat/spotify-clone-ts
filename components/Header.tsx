@@ -3,7 +3,7 @@
 import { useAuthStore, useUser } from "@/hooks";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/navigation";
-import { FC, ReactNode, useEffect } from "react";
+import { FC, ReactNode } from "react";
 import { toast } from "react-hot-toast";
 import { BiSearch } from "react-icons/bi";
 import { FaUserAlt } from "react-icons/fa";
@@ -23,10 +23,6 @@ const Header: FC<HeaderProps> = ({ children, className }) => {
 
   const supabaseClient = useSupabaseClient();
   const { user } = useUser();
-
-  useEffect(() => {
-    if (user) toast.success("Successfully logged in!");
-  }, [user]);
 
   const handleLogout = async () => {
     try {

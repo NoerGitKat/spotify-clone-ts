@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import UploadInput from "./UploadInput";
+import Input from "../Input";
 import Button from "../Button";
 import { toast } from "react-hot-toast";
 import { useUser } from "@/hooks";
@@ -62,7 +62,7 @@ const UploadForm: FC<UploadFormProps> = ({ closeModal }) => {
             upsert: false
           });
 
-      if (songError) {
+      if (imageError) {
         return toast.error("Failed image upload. Try again.");
       }
 
@@ -92,13 +92,13 @@ const UploadForm: FC<UploadFormProps> = ({ closeModal }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <UploadInput
+      <Input
         id="title"
         disabled={isSubmitting}
         placeholder="Title"
         {...register("title", { required: true, minLength: 2 })}
       />
-      <UploadInput
+      <Input
         id="author"
         disabled={isSubmitting}
         placeholder="Author"
@@ -106,7 +106,7 @@ const UploadForm: FC<UploadFormProps> = ({ closeModal }) => {
       />
       <aside>
         <p>Select a file</p>
-        <UploadInput
+        <Input
           id="song"
           type="file"
           disabled={isSubmitting}
@@ -116,7 +116,7 @@ const UploadForm: FC<UploadFormProps> = ({ closeModal }) => {
       </aside>
       <aside>
         <p>Select an image</p>
-        <UploadInput
+        <Input
           id="image"
           type="file"
           disabled={isSubmitting}

@@ -1,11 +1,11 @@
 import { FC, InputHTMLAttributes, forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
 
-interface UploadInputProps extends InputHTMLAttributes<HTMLInputElement> {}
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {}
 
-const UploadInput: FC<UploadInputProps> = forwardRef<
+const Input: FC<InputProps> = forwardRef<
   HTMLInputElement,
-  UploadInputProps
+  InputProps
 >(({ className, type, disabled, ...props }, ref) => {
   return (
     <input
@@ -21,6 +21,6 @@ const UploadInput: FC<UploadInputProps> = forwardRef<
   );
 });
 
-UploadInput.displayName = "Input";
+Input.displayName = "Input";
 
-export default UploadInput;
+export default Input;

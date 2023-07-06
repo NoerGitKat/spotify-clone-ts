@@ -11,9 +11,7 @@ type SongListProps = {
 
 const SongList: FC<SongListProps> = ({ songs, isLibrary }) => {
   if (songs.length === 0)
-    return <p className="mt-4 text-neutral-400">No available songs.</p>;
-
-  console.log("isLibrary", isLibrary);
+    return <p className="mt-4 text-neutral-400 px-6">No available songs.</p>;
 
   return (
     <ul

@@ -47,3 +47,24 @@ export const getSongsByUserId = async (): Promise<Song[] | []> => {
     return [];
   }
 };
+
+export const getSongsByTitle = async (title: string): Promise<Song[] | []> => {
+  const supabase = createServerComponentClient({
+    cookies
+  });
+
+  try {
+    const { data: songsData, error: songsError } = await supabase
+      .from("songs")
+      .select("*")
+      .ilike("title", `%${title}%`)
+      .order("created_at", { ascending: false });
+
+    if (songsError) throw new Error(songsError.message);
+
+    return songsData || [];
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};

@@ -14,7 +14,7 @@ interface LibraryProps {
 const Library: FC<LibraryProps> = ({ userSongs }) => {
   const { onOpen: openAuthModal } = useAuthStore();
   const { onOpen: openUploadModal } = useUploadStore();
-  const { user, subscription } = useUser();
+  const { user } = useUser();
 
   const onClick = () => {
     if (!user) {
