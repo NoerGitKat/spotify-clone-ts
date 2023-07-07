@@ -1,1 +1,6 @@
-export { getSongs, getSongsByUserId } from "./songs";
+export {
+  getSongs,
+  getSongsByUserId,
+  getSongsByTitle,
+  getLikedSongs
+} from "./songs";

@@ -23,7 +23,11 @@ export default async function Home(): Promise<JSX.Element> {
               mt-4
             "
         >
-          <ListItem image="/images/liked.png" name="Liked Songs" href="liked" />
+          <ListItem
+            image="/images/liked.png"
+            name="Liked Songs"
+            href="/liked"
+          />
         </ul>
       </Header>
       <section className="mt-2 mb-7 px-6">

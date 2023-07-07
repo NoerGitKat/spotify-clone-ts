@@ -33,7 +33,7 @@ export const getSongsByUserId = async (): Promise<Song[] | []> => {
 
     if (sessionError) throw new Error(sessionError.message);
 
-    const { data: songsData, error: songsError } = await supabase
+    const { data: songs, error: songsError } = await supabase
       .from("songs")
       .select("*")
       .eq("user_id", sessionData.session?.user.id)
@@ -41,7 +41,7 @@ export const getSongsByUserId = async (): Promise<Song[] | []> => {
 
     if (songsError) throw new Error(songsError.message);
 
-    return songsData || [];
+    return songs || [];
   } catch (error) {
     console.error(error);
     return [];
@@ -54,7 +54,7 @@ export const getSongsByTitle = async (title: string): Promise<Song[] | []> => {
   });
 
   try {
-    const { data: songsData, error: songsError } = await supabase
+    const { data: songs, error: songsError } = await supabase
       .from("songs")
       .select("*")
       .ilike("title", `%${title}%`)
@@ -62,7 +62,34 @@ export const getSongsByTitle = async (title: string): Promise<Song[] | []> => {
 
     if (songsError) throw new Error(songsError.message);
 
-    return songsData || [];
+    return songs || [];
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
+export const getLikedSongs = async (): Promise<Song[] | []> => {
+  const supabase = createServerComponentClient({
+    cookies
+  });
+
+  try {
+    const {
+      data: { session }
+    } = await supabase.auth.getSession();
+
+    const { data, error } = await supabase
+      .from("liked_songs")
+      .select("*, songs(*)")
+      .eq("user_id", session?.user.id)
+      .order("created_at", { ascending: false });
+
+    if (error) throw new Error(error.message);
+
+    return data.map(({ songs }) => ({
+      ...songs
+    }));
   } catch (error) {
     console.error(error);
     return [];
