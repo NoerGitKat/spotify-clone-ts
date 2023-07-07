@@ -1,8 +1,7 @@
 import { useSessionContext } from "@supabase/auth-helpers-react";
-import { useRouter } from "next/navigation";
 import useAuthStore from "./useAuthStore";
 import useUser from "./useUser";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { toast } from "react-hot-toast";
 
@@ -61,7 +60,10 @@ const useLikeButton = (songId: string) => {
     }
   };
 
-  return { isLiked, Icon, handleLike };
+  return useMemo(
+    () => ({ isLiked, Icon, handleLike }),
+    [isLiked, Icon, handleLike]
+  );
 };
 
 export default useLikeButton;

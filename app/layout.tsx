@@ -9,6 +9,7 @@ import { Figtree } from "next/font/google";
 import { ReactNode } from "react";
 import "./globals.css";
 import { getSongsByUserId } from "@/actions";
+import { Player } from "@/components/player";
 
 const font = Figtree({ subsets: ["latin"] });
 
@@ -33,6 +34,7 @@ export default async function RootLayout({
           <UserProvider>
             <ModalProvider />
             <Sidebar userSongs={userSongs}>{children}</Sidebar>
+            <Player />
           </UserProvider>
         </SupabaseProvider>
       </body>
