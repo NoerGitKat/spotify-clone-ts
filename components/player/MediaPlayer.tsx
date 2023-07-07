@@ -1,12 +1,11 @@
 import { Song as SongType } from "@/types/global";
 import React, { FC } from "react";
 import { BsPauseFill, BsPlayFill } from "react-icons/bs";
-import Song from "../songs/Song";
-import LikeButton from "../LikeButton";
 import PlayingSong from "./PlayingSong";
 import PlayButton from "../songs/PlayButton";
 import { AiFillStepBackward, AiFillStepForward } from "react-icons/ai";
 import { HiSpeakerXMark, HiSpeakerWave } from "react-icons/hi2";
+import VolumeSlider from "./VolumeSlider";
 
 type MediaPlayerProps = {
   song: SongType;
@@ -101,6 +100,7 @@ const MediaPlayer: FC<MediaPlayerProps> = ({ song, songUrl }) => {
             className="cursor-pointer"
             size={34}
           />
+          <VolumeSlider />
         </div>
       </aside>
     </section>
