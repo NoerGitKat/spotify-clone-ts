@@ -84,6 +84,7 @@ const Song: FC<SongProps> = ({ song, onClick, isRow, hasLikeButton }) => {
           >
             <PlayButton
               handleClick={() => console.log("Pressed play button!")}
+              className="translate translate-y-1/4"
             />
           </aside>
         </>

@@ -56,7 +56,7 @@ const PlayingSong: FC<PlayingSongProps> = ({ song, onClick }) => {
         <p className="text-white truncate">{song.title}</p>
         <p className="text-neutral-400 text-sm truncate">By {song.author}</p>
       </aside>
-      <aside className="flex align-middle ml-4">
+      <aside className="flex align-middle">
         <LikeButton songId={song.id} />
       </aside>
     </section>
