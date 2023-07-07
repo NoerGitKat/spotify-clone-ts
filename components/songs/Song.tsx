@@ -82,7 +82,9 @@ const Song: FC<SongProps> = ({ song, onClick, isRow, hasLikeButton }) => {
           right-5
         "
           >
-            <PlayButton />
+            <PlayButton
+              handleClick={() => console.log("Pressed play button!")}
+            />
           </aside>
         </>
       )}
