@@ -1,26 +1,30 @@
-import { Song as SongType } from "@/types/global";
+"use client";
+
 import React, { FC } from "react";
-import { BsPauseFill, BsPlayFill } from "react-icons/bs";
 import PlayingSong from "./PlayingSong";
 import PlayButton from "../songs/PlayButton";
 import { AiFillStepBackward, AiFillStepForward } from "react-icons/ai";
-import { HiSpeakerXMark, HiSpeakerWave } from "react-icons/hi2";
 import VolumeSlider from "./VolumeSlider";
+import { useMediaPlayer } from "@/hooks";
 
-type MediaPlayerProps = {
-  song: SongType;
-  songUrl: string;
-};
-
-const MediaPlayer: FC<MediaPlayerProps> = ({ song, songUrl }) => {
-  const PlayIcon = songUrl ? BsPauseFill : BsPlayFill;
-  const VolumeIcon = songUrl ? HiSpeakerXMark : HiSpeakerWave;
-
+const MediaPlayer: FC = () => {
+  const {
+    PlayIcon,
+    VolumeIcon,
+    volume,
+    song,
+    onPlayNext,
+    onPlayPrevious,
+    toggleSong,
+    changeVolume
+  } = useMediaPlayer();
   return (
     <section className="grid grid-cols-2 md:grid-cols-3 h-full">
-      <aside className="flex w-full justify-start">
-        <PlayingSong song={song} />
-      </aside>
+      {song && (
+        <aside className="flex w-full justify-start">
+          <PlayingSong song={song} />
+        </aside>
+      )}
       {/* Mobile play button */}
       <aside
         className="
@@ -60,7 +64,7 @@ const MediaPlayer: FC<MediaPlayerProps> = ({ song, songUrl }) => {
           "
       >
         <AiFillStepBackward
-          onClick={() => console.log("TODO")}
+          onClick={onPlayPrevious}
           size={30}
           className="
               text-neutral-400 
@@ -70,7 +74,7 @@ const MediaPlayer: FC<MediaPlayerProps> = ({ song, songUrl }) => {
             "
         />
         <PlayButton
-          handleClick={() => console.log("from Mediaplayer")}
+          handleClick={toggleSong}
           Icon={PlayIcon}
           size={30}
           className="
@@ -83,7 +87,7 @@ const MediaPlayer: FC<MediaPlayerProps> = ({ song, songUrl }) => {
             "
         />
         <AiFillStepForward
-          onClick={() => console.log("TODO")}
+          onClick={onPlayNext}
           size={30}
           className="
               text-neutral-400 
@@ -100,7 +104,7 @@ const MediaPlayer: FC<MediaPlayerProps> = ({ song, songUrl }) => {
             className="cursor-pointer"
             size={34}
           />
-          <VolumeSlider />
+          <VolumeSlider value={volume} onChange={changeVolume} />
         </div>
       </aside>
     </section>

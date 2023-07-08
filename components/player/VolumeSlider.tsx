@@ -15,7 +15,7 @@ const VolumeSlider: FC<VolumeSliderProps> = ({ value = 1, onChange }) => {
     <RadixSlider.Root
       className="relative flex items-center select-none touch-none w-full h-10"
       defaultValue={[1]}
-      value={[]}
+      value={[value]}
       onValueChange={handleChange}
       max={1}
       step={0.1}

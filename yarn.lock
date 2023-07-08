@@ -1820,6 +1820,11 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
+howler@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/howler/-/howler-2.2.3.tgz#a2eff9b08b586798e7a2ee17a602a90df28715da"
+  integrity sha512-QM0FFkw0LRX1PR8pNzJVAY25JhIWvbKMBFM4gqk+QdV+kPXOhleWGCB6AiAF/goGjIHK2e/nIElplvjQwhr0jg==
+
 human-signals@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/human-signals/-/human-signals-2.1.0.tgz"
@@ -2703,6 +2708,13 @@ react-style-singleton@^2.2.1:
     get-nonce "^1.0.0"
     invariant "^2.2.4"
     tslib "^2.0.0"
+
+react-use-audio-player@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-use-audio-player/-/react-use-audio-player-2.1.0.tgz#04c6b0777280c5a0d5680cbab859ef77e5326f79"
+  integrity sha512-Ek5yqFdtBb6Gr3FkhbQf02R6bY7bkKKDiMXsALtJ8yAmJf1GpxGmTMFf67z/VrYeR2QpjcESsIATLtUBR9YPHA==
+  dependencies:
+    howler "^2.2.3"
 
 react@18.2.0, react@^18.2.0:
   version "18.2.0"
