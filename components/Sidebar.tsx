@@ -1,11 +1,12 @@
 "use client";
 
 import { ReactNode, FC } from "react";
-import { useSidebar } from "@/hooks";
+import { usePlayerStore, useSidebar } from "@/hooks";
 import Box from "./Box";
 import SidebarItem from "./SidebarItem";
 import Library from "./Library";
 import { Song } from "@/types/global";
+import { twMerge } from "tailwind-merge";
 
 interface ISidebarProps {
   children: ReactNode;
@@ -14,9 +15,12 @@ interface ISidebarProps {
 
 const Sidebar: FC<ISidebarProps> = ({ userSongs, children }) => {
   const { routes } = useSidebar();
+  const { activeId } = usePlayerStore();
 
   return (
-    <section className="flex h-full">
+    <section
+      className={twMerge("flex h-full", activeId && "h-[calc(100%-80px)]")}
+    >
       <aside className="hidden md:flex flex-col gap-y-2 bg-black h-full w-[300px] p-2">
         <Box className="flex flex-col gap-y-4 px-5 py-4">
           {routes.map((route) => (

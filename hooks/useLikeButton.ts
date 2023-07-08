@@ -1,9 +1,10 @@
 import { useSessionContext } from "@supabase/auth-helpers-react";
 import useAuthStore from "./useAuthStore";
 import useUser from "./useUser";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { toast } from "react-hot-toast";
+import { IconType } from "react-icons";
 
 const useLikeButton = (songId: string) => {
   const [isLiked, setIsLiked] = useState<boolean>(false);
@@ -11,7 +12,7 @@ const useLikeButton = (songId: string) => {
   const { onOpen } = useAuthStore();
   const { user } = useUser();
 
-  const Icon = isLiked ? AiFillHeart : AiOutlineHeart;
+  const Icon: IconType = isLiked ? AiFillHeart : AiOutlineHeart;
 
   useEffect(() => {
     if (!user?.id) return;
@@ -24,13 +25,17 @@ const useLikeButton = (songId: string) => {
         .eq("song_id", songId)
         .single();
 
-      if (!error && data) setIsLiked(true);
+      if (!error && data) {
+        setIsLiked(true);
+      } else {
+        setIsLiked(false);
+      }
     };
 
     fetchData();
-  }, [user?.id, songId, supabaseClient]);
+  }, [user?.id, songId, supabaseClient, isLiked]);
 
-  const handleLike = async () => {
+  const handleLike = useCallback(async () => {
     if (!user) return onOpen();
 
     if (isLiked) {
@@ -58,7 +63,7 @@ const useLikeButton = (songId: string) => {
         toast.error("Couldn't like song. Try again later.");
       }
     }
-  };
+  }, [supabaseClient, isLiked, onOpen, songId, user]);
 
   return useMemo(
     () => ({ isLiked, Icon, handleLike }),

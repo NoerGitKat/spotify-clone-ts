@@ -11,11 +11,20 @@ const useMediaPlayer = () => {
   const { ids, activeId, setId } = usePlayerStore();
   const { song } = useGetSongById(activeId);
   const songUrl = useGetSongUrl(song);
-  const { load, play, pause, playing, isLoading, volume, setVolume } =
-    useGlobalAudioPlayer();
+  const {
+    load,
+    play,
+    pause,
+    playing,
+    isLoading,
+    volume,
+    setVolume,
+    mute,
+    muted
+  } = useGlobalAudioPlayer();
 
   const PlayIcon = isLoading ? BiLoader : playing ? BsPauseFill : BsPlayFill;
-  const VolumeIcon = volume === 0 ? HiSpeakerXMark : HiSpeakerWave;
+  const VolumeIcon = muted ? HiSpeakerXMark : HiSpeakerWave;
 
   const onPlayNext = useCallback(() => {
     if (ids.length === 0) return;
@@ -63,6 +72,8 @@ const useMediaPlayer = () => {
     [setVolume]
   );
 
+  const toggleSound = useCallback(() => mute(!muted), [mute, muted]);
+
   return useMemo(
     () => ({
       PlayIcon,
@@ -72,7 +83,8 @@ const useMediaPlayer = () => {
       onPlayPrevious,
       toggleSong,
       song,
-      changeVolume
+      changeVolume,
+      toggleSound
     }),
     [
       PlayIcon,
@@ -82,7 +94,8 @@ const useMediaPlayer = () => {
       onPlayPrevious,
       toggleSong,
       song,
-      changeVolume
+      changeVolume,
+      toggleSound
     ]
   );
 };

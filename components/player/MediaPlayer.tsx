@@ -16,7 +16,8 @@ const MediaPlayer: FC = () => {
     onPlayNext,
     onPlayPrevious,
     toggleSong,
-    changeVolume
+    changeVolume,
+    toggleSound
   } = useMediaPlayer();
   return (
     <section className="grid grid-cols-2 md:grid-cols-3 h-full">
@@ -100,7 +101,7 @@ const MediaPlayer: FC = () => {
       <aside className="hidden md:flex w-full justify-end pr-2">
         <div className="flex justify-end items-center gap-x-2 w-[120px]">
           <VolumeIcon
-            onClick={() => console.log("clicked on volume")}
+            onClick={toggleSound}
             className="cursor-pointer"
             size={34}
           />
