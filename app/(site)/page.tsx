@@ -6,6 +6,7 @@ export const revalidate = 0; // Will not cache page
 
 export default async function Home(): Promise<JSX.Element> {
   const songs = await getSongs();
+
   return (
     <main className="bg-neutral-900 rounded-lg h-full w-full overflow-hidden overflow-y-auto">
       <Header>
