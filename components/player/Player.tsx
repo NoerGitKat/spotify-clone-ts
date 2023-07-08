@@ -1,7 +1,7 @@
 "use client";
 
 import { useGetSongById, useGetSongUrl, usePlayerStore } from "@/hooks";
-import React, { FC } from "react";
+import { FC } from "react";
 import MediaPlayer from "./MediaPlayer";
 
 const Player: FC = () => {

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC } from "react";
+import { FC } from "react";
 import PlayingSong from "./PlayingSong";
 import PlayButton from "../songs/PlayButton";
 import { AiFillStepBackward, AiFillStepForward } from "react-icons/ai";

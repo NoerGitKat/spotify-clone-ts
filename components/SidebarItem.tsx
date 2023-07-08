@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { FC } from "react";
+import { FC } from "react";
 import { IconType } from "react-icons";
 import { twMerge } from "tailwind-merge";
 

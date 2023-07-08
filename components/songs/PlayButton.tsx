@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import { FC } from "react";
 import { IconType } from "react-icons";
 import { FaPlay } from "react-icons/fa";
 import { twMerge } from "tailwind-merge";
