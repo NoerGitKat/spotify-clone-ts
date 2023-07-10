@@ -12,7 +12,13 @@ export const getURL = () => {
   return url;
 };
 
-export const postData = async ({ url, data }: { url: string; data: Price }) => {
+export const postPrice = async ({
+  url,
+  data
+}: {
+  url: string;
+  data: { price: Price };
+}) => {
   console.log("POST Request:", url, data);
 
   const res: Response = await fetch(url, {

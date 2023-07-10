@@ -4,3 +4,4 @@ export {
   getSongsByTitle,
   getLikedSongs
 } from "./songs";
+export { getActiveProductsWithPrices } from "./products";

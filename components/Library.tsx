@@ -1,11 +1,17 @@
 "use client";
 
-import { useAuthStore, useUploadStore, useUser } from "@/hooks";
+import {
+  useAuthStore,
+  useSubscribeStore,
+  useUploadStore,
+  useUser
+} from "@/hooks";
 import { Song } from "@/types/global";
 import { FC } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import { TbPlaylist } from "react-icons/tb";
 import { SongList } from "./songs";
+import { useSubscribeModal } from "@/hooks";
 
 interface LibraryProps {
   userSongs: Song[];
@@ -14,14 +20,17 @@ interface LibraryProps {
 const Library: FC<LibraryProps> = ({ userSongs }) => {
   const { onOpen: openAuthModal } = useAuthStore();
   const { onOpen: openUploadModal } = useUploadStore();
-  const { user } = useUser();
+  const { onOpen: openSubscribeModal } = useSubscribeStore();
+  const { user, subscription } = useUser();
 
   const onClick = () => {
     if (!user) {
       return openAuthModal();
     }
 
-    // TODO: Check for subscription
+    if (!subscription) {
+      return openSubscribeModal();
+    }
 
     return openUploadModal();
   };

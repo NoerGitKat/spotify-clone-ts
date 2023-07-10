@@ -1,1 +1,1 @@
-export { getURL, postData, toDateTime, getStripe, stripe } from "./stripe";
+export { getURL, postPrice, toDateTime, getStripe, stripe } from "./stripe";
