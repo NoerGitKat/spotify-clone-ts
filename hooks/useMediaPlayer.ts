@@ -15,6 +15,7 @@ const useMediaPlayer = () => {
     load,
     play,
     pause,
+    stop,
     playing,
     isLoading,
     volume,
@@ -84,7 +85,8 @@ const useMediaPlayer = () => {
       toggleSong,
       song,
       changeVolume,
-      toggleSound
+      toggleSound,
+      stop
     }),
     [
       PlayIcon,
@@ -95,7 +97,8 @@ const useMediaPlayer = () => {
       toggleSong,
       song,
       changeVolume,
-      toggleSound
+      toggleSound,
+      stop
     ]
   );
 };

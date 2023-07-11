@@ -1,6 +1,6 @@
 "use client";
 
-import { useAuthStore, usePlayerStore, useUser } from "@/hooks";
+import { useAuthStore, useMediaPlayer, usePlayerStore, useUser } from "@/hooks";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/navigation";
 import { FC, ReactNode } from "react";
@@ -19,6 +19,7 @@ type HeaderProps = {
 
 const Header: FC<HeaderProps> = ({ children, className }) => {
   const { back, forward, refresh, push } = useRouter();
+  const { stop } = useMediaPlayer();
   const { reset } = usePlayerStore();
   const { onOpen } = useAuthStore();
 
@@ -30,8 +31,10 @@ const Header: FC<HeaderProps> = ({ children, className }) => {
       const { error } = await supabaseClient.auth.signOut();
       if (error) toast(error.message);
 
+      stop();
       reset();
       refresh();
+
       toast.success("Logged out!");
     } catch (err) {
       toast(err as string);

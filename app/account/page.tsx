@@ -26,13 +26,13 @@ export default async function Account(): Promise<JSX.Element> {
         ) : (
           <aside className="flex flex-col gap-y-4">
             <p>
-              You are currently on the
+              You are currently on the{" "}
               <b>
                 {
                   // @ts-ignore
                   subscription?.prices?.products?.name
                 }
-              </b>
+              </b>{" "}
               plan.
             </p>
             <Button onClick={redirectToCustomerPortal} className="w-[300px]">
