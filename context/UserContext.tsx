@@ -3,16 +3,17 @@ import {
   useSessionContext,
   useUser as useSupaUser
 } from "@supabase/auth-helpers-react";
-import { Subscription, User } from "@supabase/supabase-js";
+import { User } from "@supabase/supabase-js";
 import { createContext, useCallback, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
+import Stripe from "stripe";
 
 type UserContextType = {
   accessToken: string | null;
   user: User | null;
   userDetails: UserDetails | null;
   isLoading: boolean;
-  subscription: Subscription | null;
+  subscription: Stripe.Subscription | null;
 };
 
 export const UserContext = createContext<UserContextType | undefined>(
@@ -33,7 +34,9 @@ export const UserContextProvider = (props: UserContextProps) => {
   const accessToken = session?.access_token ?? null;
   const [isLoadingData, setIsLoadingData] = useState<boolean>(false);
   const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
-  const [subscription, setSubscription] = useState<Subscription | null>(null);
+  const [subscription, setSubscription] = useState<Stripe.Subscription | null>(
+    null
+  );
 
   const getUserDetails = useCallback(
     () => supabase.from("users").select("*").single(),
@@ -64,7 +67,7 @@ export const UserContextProvider = (props: UserContextProps) => {
           }
 
           if (subscriptionPromise.status === "fulfilled") {
-            setSubscription(subscriptionPromise.value?.data as Subscription);
+            setSubscription(subscriptionPromise.value?.data);
           }
         })
         .catch((error) => console.error(error))

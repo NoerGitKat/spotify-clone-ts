@@ -13,3 +13,4 @@ export { default as useGetSongUrl } from "./useGetSongUrl";
 export { default as usePlaylist } from "./usePlaylist";
 export { default as useMediaPlayer } from "./useMediaPlayer";
 export { default as useSubscribeStore } from "./useSubscribeStore";
+export { default as useAccount } from "./useAccount";
