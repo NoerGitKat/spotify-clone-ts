@@ -2,15 +2,7 @@ import { getLikedSongs } from "@/actions";
 import { Header, SongList } from "@/components";
 import Image from "next/image";
 
-interface LikedSongsProps {
-  searchParams: {
-    title: string;
-  };
-}
-
-export default async function LikedSongs(
-  props: LikedSongsProps
-): Promise<JSX.Element> {
+export default async function LikedSongs(): Promise<JSX.Element> {
   const songs = await getLikedSongs();
 
   return (

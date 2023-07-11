@@ -3,11 +3,7 @@
 import { Button, Header } from "@/components";
 import { useAccount, useSubscribeStore, useUser } from "@/hooks";
 
-interface AccountProps {}
-
-export default async function Account(
-  props: AccountProps
-): Promise<JSX.Element> {
+export default async function Account(): Promise<JSX.Element> {
   const { redirectToCustomerPortal } = useAccount();
   const { onOpen } = useSubscribeStore();
   const { subscription } = useUser();
